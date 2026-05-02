@@ -78,7 +78,7 @@ function Tasks() {
 
   async function loadTasks() {
     try {
-      const { data } = await api.get('/api/tasks');
+      const { data } = await api.get('/tasks');
       setTasks(Array.isArray(data) ? data : data.tasks || []);
     } catch (err) {
       setError(err.response?.data?.message || 'Unable to load tasks.');
@@ -87,7 +87,7 @@ function Tasks() {
 
   async function loadProjects() {
     try {
-      const { data } = await api.get('/api/projects');
+      const { data } = await api.get('/projects');
       setProjects(Array.isArray(data) ? data : data.projects || []);
     } catch (err) {
       setError(err.response?.data?.message || 'Unable to load projects.');
@@ -123,7 +123,7 @@ function Tasks() {
 
     setIsLoading(true);
     try {
-      const { data } = await api.post('/api/tasks', payload);
+      const { data } = await api.post('/tasks', payload);
 
       setForm({
         title: '',
@@ -148,7 +148,7 @@ function Tasks() {
 
     setIsLoading(true);
     try {
-      const { data } = await api.patch(`/api/tasks/${taskId}/status`, { status });
+      const { data } = await api.patch(`/tasks/${taskId}/status`, { status });
       setSuccess(data.message || 'Task status updated successfully.');
       await loadTasks();
     } catch (err) {
@@ -164,7 +164,7 @@ function Tasks() {
 
     setIsLoading(true);
     try {
-      const { data } = await api.put(`/api/tasks/${taskId}/assign`, { userId });
+      const { data } = await api.put(`/tasks/${taskId}/assign`, { userId });
       setSuccess(data.message || 'Task assigned successfully.');
       await loadTasks();
     } catch (err) {

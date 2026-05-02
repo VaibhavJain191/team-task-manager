@@ -59,7 +59,7 @@ function Projects() {
 
   async function loadProjects() {
     try {
-      const { data } = await api.get('/api/projects');
+      const { data } = await api.get('/projects');
       setProjects(Array.isArray(data) ? data : data.projects || []);
     } catch (err) {
       setError(err.response?.data?.message || 'Unable to load projects.');
@@ -77,7 +77,7 @@ function Projects() {
 
     setIsLoading(true);
     try {
-      const { data } = await api.post('/api/projects', {
+      const { data } = await api.post('/projects', {
         title: name,
         name,
         description,
@@ -108,7 +108,7 @@ function Projects() {
     setIsLoading(true);
 
   try {
-    const { data } = await api.put(`/api/projects/${projectId}/members`, { userId });
+    const { data } = await api.put(`/projects/${projectId}/members`, { userId });
 
     await loadProjects();
 
@@ -142,7 +142,7 @@ function Projects() {
     setIsLoading(true);
 
     try {
-      const { data } = await api.post(`/api/projects/join`, {
+      const { data } = await api.post(`/projects/join`, {
         projectId: joinProjectId.trim(),
       });
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar.jsx';
+import Toast from '../components/Toast.jsx';
 import api from '../services/api.js';
 
 const defaultStats = {
@@ -63,8 +64,8 @@ function Dashboard() {
     async function loadDashboard() {
       try {
         const [dashboardResponse, tasksResponse] = await Promise.all([
-          api.get('/api/tasks/dashboard'),
-          api.get('/api/tasks'),
+          api.get('/tasks/dashboard'),
+          api.get('/tasks'),
         ]);
         const dashboardData = dashboardResponse.data;
         const tasksData = tasksResponse.data;
@@ -90,7 +91,7 @@ function Dashboard() {
       <Navbar />
       <main className="page">
         <h1>Dashboard</h1>
-        {error && <p className="error">{error}</p>}
+        <Toast message={error} type="error" onClose={() => setError('')} />
         <section className="stats-grid">
           <article>
             <span>Total</span>
