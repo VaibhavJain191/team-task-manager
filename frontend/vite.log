@@ -1,0 +1,51 @@
+
+> dev
+> vite
+
+Port 5173 is in use, trying another one...
+Port 5174 is in use, trying another one...
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m413[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5175[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[2m9:31:43 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/ProtectedRoute.jsx[22m
+[2m9:31:44 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/ProtectedRoute.jsx[22m
+[2m9:32:30 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Navbar.jsx[22m
+[2m9:32:33 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Navbar.jsx[22m
+[2m9:32:49 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Navbar.jsx[22m
+[2m9:33:01 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Login.jsx[22m
+[2m9:33:03 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Login.jsx[22m
+[2m9:45:13 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Login.jsx[22m
+[2m9:45:13 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/App.jsx[22m
+[2m9:45:13 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Navbar.jsx[22m
+[2m9:45:13 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m9:45:28 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Navbar.jsx[22m
+[2m9:54:04 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m9:54:04 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m9:55:03 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m9:55:03 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m9:57:01 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Dashboard.jsx[22m
+[2m9:57:01 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m10:24:29 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m10:47:30 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m10:47:47 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m10:48:46 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m10:49:13 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m10:51:41 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m10:52:13 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m10:52:39 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m11:07:47 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m11:08:07 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:10:42 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:11:19 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:24:15 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m11:24:36 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:24:54 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m11:29:22 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:32:28 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:41:28 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:48:23 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Tasks.jsx[22m
+[2m11:48:54 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m11:51:56 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m
+[2m11:52:09 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/pages/Projects.jsx[22m

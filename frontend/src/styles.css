@@ -1,0 +1,434 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f5f7; /* Trello background */
+  color: #172b4d; /* Trello text color */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 6px;
+  background: #0052cc; /* Trello primary blue */
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 16px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #0065ff;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 2px solid #dfe1e6;
+  border-radius: 6px;
+  background-color: #fafbfc;
+  margin-top: 6px;
+  padding: 10px 12px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4c9aff;
+  background-color: #ffffff;
+}
+
+textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+.auth-page {
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-panel,
+.panel,
+.list-item,
+.stats-grid article {
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(9, 30, 66, 0.15), 0 0 1px rgba(9, 30, 66, 0.1);
+}
+
+.auth-panel {
+  max-width: 420px;
+  padding: 28px;
+  width: 100%;
+}
+
+.navbar {
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 14px 28px;
+}
+
+.brand {
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 14px;
+}
+
+.navbar a {
+  color: #42526e;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.navbar a:hover {
+  background: #ebecf0;
+}
+
+.navbar a.active {
+  color: #0052cc;
+  background: #deebff;
+  font-weight: 600;
+}
+
+.page {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 28px;
+}
+
+.page-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel {
+  margin-bottom: 24px;
+  padding: 20px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.stats-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.stats-grid article {
+  padding: 20px;
+}
+
+.stats-grid span {
+  color: #6b7280;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.stats-grid strong {
+  font-size: 34px;
+}
+
+.dashboard-section {
+  margin-top: 24px;
+}
+
+.user-task-list {
+  display: grid;
+  gap: 10px;
+}
+
+.user-task-card {
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.user-task-card span {
+  font-weight: 700;
+}
+
+.user-task-card strong {
+  color: #2563eb;
+  font-size: 22px;
+}
+
+.list {
+  display: grid;
+  gap: 14px;
+}
+
+.list-item {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.list-item select {
+  max-width: 180px;
+}
+
+.task-card {
+  align-items: flex-start;
+}
+
+.task-details {
+  flex: 1;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.task-meta span {
+  background: #ebecf0;
+  border: none;
+  border-radius: 12px;
+  color: #172b4d;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+}
+
+/* Asana/Trello style colored pills */
+.task-meta span:nth-child(3) { /* Status */
+  background: #e3fcef;
+  color: #006644;
+}
+.task-meta span:last-child { /* Priority */
+  background: #ffebe6;
+  color: #bf2600;
+}
+
+.project-card {
+  align-items: stretch;
+  display: block;
+}
+
+.project-header {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.members-section {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.members-section h4 {
+  margin: 0 0 10px;
+}
+
+.members-list {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.members-list li {
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.members-list span {
+  font-weight: 700;
+}
+
+.members-list small {
+  color: #6b7280;
+}
+
+.member-controls {
+  align-items: flex-end;
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.member-controls input {
+  margin-top: 0;
+}
+
+.member-controls button {
+  flex: 0 0 auto;
+}
+
+.error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.success {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.auth-link {
+  margin: 18px 0 0;
+  text-align: center;
+}
+
+.auth-link a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.muted {
+  color: #6b7280;
+}
+
+@media (max-width: 680px) {
+  .navbar,
+  .list-item {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .navbar nav {
+    flex-wrap: wrap;
+  }
+
+  .page {
+    padding: 20px;
+  }
+
+  .list-item select {
+    max-width: none;
+  }
+
+  .member-controls,
+  .members-list li {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  min-width: 280px;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+  border-left: 4px solid #3b82f6;
+}
+
+.toast-error {
+  border-left-color: #ef4444;
+}
+
+.toast-success {
+  border-left-color: #10b981;
+}
+
+.toast span {
+  font-weight: 600;
+  color: #1f2937;
+  padding-right: 16px;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-close:hover {
+  color: #4b5563;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
