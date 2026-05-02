@@ -13,6 +13,9 @@ connectDatabase();
 // Middleware
 app.use(express.json());
 
+// Routes
+app.use("/api/auth", require("./routes/authRoutes"));
+
 // Test route
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -26,3 +29,4 @@ const APP_PORT = process.env.PORT || 5000;
 app.listen(APP_PORT, () => {
   console.log(`Server is running on port ${APP_PORT}`);
 });
+
