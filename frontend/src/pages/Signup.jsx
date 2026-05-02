@@ -20,7 +20,7 @@ function Signup() {
     setLoading(true);
 
     try {
-      const { data } = await api.post('/api/auth/signup', form);
+      const { data } = await api.post('/auth/register', form);
       const token = data.token || data.accessToken;
 
       if (!token) {
