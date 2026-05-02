@@ -18,6 +18,7 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/projects", require("./routes/projectRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
 
+
 // Test route
 app.get("/", (req, res) => {
   res.status(200).json({

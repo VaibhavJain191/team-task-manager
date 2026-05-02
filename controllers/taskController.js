@@ -1,7 +1,8 @@
-// controllers/taskController.js
 const Task = require("../models/Task");
 const Project = require("../models/Project");
+const User = require("../models/User");
 
+// CREATE TASK (Admin)
 const createTask = async (req, res) => {
   try {
     const { title, description, project, assignedTo, dueDate } = req.body;
@@ -20,7 +21,13 @@ const createTask = async (req, res) => {
       });
     }
 
-    if (assignedTo && !existingProject.members.some((member) => member.toString() === assignedTo)) {
+    // Validate assigned user is project member
+    if (
+      assignedTo &&
+      !existingProject.members.some(
+        (member) => member.toString() === assignedTo
+      )
+    ) {
       return res.status(400).json({
         message: "Assigned user must be a project member",
       });
@@ -46,6 +53,7 @@ const createTask = async (req, res) => {
   }
 };
 
+// ASSIGN TASK (Admin)
 const assignTask = async (req, res) => {
   try {
     const { taskId } = req.params;
@@ -67,8 +75,7 @@ const assignTask = async (req, res) => {
 
     const project = await Project.findById(task.project);
 
-    const User = require("../models/User");
-
+    // Check if user exists
     const user = await User.findById(userId);
 
     if (!user) {
@@ -77,9 +84,24 @@ const assignTask = async (req, res) => {
       });
     }
 
-    if (!project.members.some((member) => member.toString() === userId)) {
+    // Check if user is project member
+    if (
+      !project.members.some(
+        (member) => member.toString() === userId
+      )
+    ) {
       return res.status(400).json({
         message: "User must be a project member",
+      });
+    }
+
+    // Optional: prevent reassigning same user
+    if (
+      task.assignedTo &&
+      task.assignedTo.toString() === userId
+    ) {
+      return res.status(400).json({
+        message: "Task already assigned to this user",
       });
     }
 
@@ -98,6 +120,7 @@ const assignTask = async (req, res) => {
   }
 };
 
+// UPDATE TASK STATUS (Assigned User)
 const updateTaskStatus = async (req, res) => {
   try {
     const { taskId } = req.params;
@@ -117,7 +140,11 @@ const updateTaskStatus = async (req, res) => {
       });
     }
 
-    if (!task.assignedTo || task.assignedTo.toString() !== req.user._id.toString()) {
+    // Only assigned user can update
+    if (
+      !task.assignedTo ||
+      task.assignedTo.toString() !== req.user._id.toString()
+    ) {
       return res.status(403).json({
         message: "Only the assigned user can update this task",
       });
@@ -138,6 +165,7 @@ const updateTaskStatus = async (req, res) => {
   }
 };
 
+// GET TASKS (User)
 const getTasks = async (req, res) => {
   try {
     const filter = {
@@ -163,9 +191,49 @@ const getTasks = async (req, res) => {
   }
 };
 
+// DASHBOARD API
+const getDashboardData = async (req, res) => {
+  try {
+    const today = new Date();
+
+    const totalTasks = await Task.countDocuments({
+      assignedTo: req.user._id,
+    });
+
+    const completedTasks = await Task.countDocuments({
+      assignedTo: req.user._id,
+      status: "done",
+    });
+
+    const pendingTasks = await Task.countDocuments({
+      assignedTo: req.user._id,
+      status: { $ne: "done" },
+    });
+
+    const overdueTasks = await Task.countDocuments({
+      assignedTo: req.user._id,
+      status: { $ne: "done" },
+      dueDate: { $exists: true, $lt: today },
+    });
+
+    res.status(200).json({
+      totalTasks,
+      completedTasks,
+      pendingTasks,
+      overdueTasks,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to get dashboard data",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createTask,
   assignTask,
   updateTaskStatus,
   getTasks,
+  getDashboardData,
 };

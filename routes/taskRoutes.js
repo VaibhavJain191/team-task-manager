@@ -5,10 +5,13 @@ const {
   assignTask,
   updateTaskStatus,
   getTasks,
+  getDashboardData,
 } = require("../controllers/taskController");
 const { protect, adminOnly } = require("../middleware/authMiddleware");
 
 const router = express.Router();
+
+router.get("/dashboard", protect, getDashboardData);
 
 router.post("/", protect, adminOnly, createTask);
 router.put("/:taskId/assign", protect, adminOnly, assignTask);
