@@ -1,101 +1,198 @@
-# Team Task Manager
+# 🚀 Team Task Manager
 
-A full-stack task management application designed for small teams to organize projects and track progress. It enforces strict project-based access, ensuring that only project creators have admin control while members can manage their assigned tasks.
+A full-stack MERN application that allows teams to create projects, assign tasks, and track progress with strict project-based role access. Designed as a simplified version of tools like Trello and Asana.
 
-## Features
+---
 
-- User authentication with JWT
-- Project creation and joining
-- Role-based access control (project owners and members)
-- Task creation, assignment, and status updates
-- Dashboard with task statistics
+## 🔥 Features
 
-## Tech Stack
+* 🔐 User authentication with JWT (Signup/Login)
+* 📁 Project creation and joining via Project ID
+* 👥 Project-based role access (Owner & Members)
+* ✅ Task creation, assignment, and status updates
+* 📊 Dashboard with task insights (total, completed, pending, overdue)
+* 🔄 Real-time UI updates without refresh
 
-- **Frontend:** React (Vite)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
-- **Authentication:** JWT
+---
 
-## Folder Structure
+## 🛡️ Role-Based Access
+
+### 👑 Project Owner (Admin)
+
+* Create projects
+* Add/remove members
+* Assign tasks to any member
+* View all tasks in the project
+
+### 👤 Member
+
+* View tasks of joined projects
+* Update status of assigned tasks only
+* Cannot assign tasks or manage members
+
+---
+
+## 🧱 Tech Stack
+
+* **Frontend:** React (Vite)
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB
+* **Authentication:** JWT
+
+---
+
+## 📁 Folder Structure
 
 ```text
 ├── controllers/
 ├── middleware/
 ├── models/
 ├── routes/
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   └── pages/
+├── config/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── services/
+├── server.js
+├── package.json
 ```
 
-## Setup Instructions
+---
 
-### Backend
+## ⚙️ Setup Instructions
 
-1. Clone the repository and navigate to the project directory.
-2. Install backend dependencies:
+### 🔹 Backend Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/VaibhavJain191/team-task-manager.git
+   cd team-task-manager
+   ```
+
+2. Install dependencies:
+
    ```bash
    npm install
    ```
-3. Create a `.env` file in the root directory and add the following:
+
+3. Create `.env` file in root:
+
    ```env
    PORT=5000
-   MONGO_URI=your_mongo_url
-   JWT_SECRET=your_secret
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secret_key
    ```
-4. Start the backend server:
+
+4. Start backend server:
+
    ```bash
    npm run dev
    ```
 
-### Frontend
+---
 
-1. Navigate to the frontend directory:
+### 🔹 Frontend Setup
+
+1. Move to frontend folder:
+
    ```bash
    cd frontend
    ```
-2. Install frontend dependencies:
+
+2. Install dependencies:
+
    ```bash
    npm install
    ```
-3. Start the development server:
+
+3. Start frontend:
+
    ```bash
    npm run dev
    ```
 
-## Environment Variables
+4. Open browser:
 
-Make sure to set these in your backend `.env` file:
+   ```
+   http://localhost:5173
+   ```
 
-- `PORT`: Port for the server (e.g., 5000)
-- `MONGO_URI`: MongoDB connection string
-- `JWT_SECRET`: Secret key used for signing JWT tokens
+---
 
-## Usage
+## 🌐 API Overview
 
-1. Sign up for a new account.
-2. Create a new project (you automatically become the owner).
-3. Add members to your project using their email or user ID.
-4. Create tasks and assign them to your members.
-5. Track progress as members update their task statuses.
+### Auth
 
-## Deployment Steps
+* `POST /api/auth/register`
+* `POST /api/auth/login`
 
-### Backend
+### Projects
 
-1. Deploy the backend on platforms like Render or Railway.
-2. Set the environment variables (`MONGO_URI`, `JWT_SECRET`, `PORT`) in your hosting dashboard.
-3. Use the start command: `npm start`
+* `GET /api/projects`
+* `POST /api/projects`
+* `POST /api/projects/join`
+* `PUT /api/projects/:id/members`
 
-### Frontend
+### Tasks
 
-1. Deploy the frontend on Vercel or Netlify.
-2. Update the API base URL in your frontend configuration to point to the deployed backend.
+* `GET /api/tasks`
+* `POST /api/tasks`
+* `PUT /api/tasks/:id/assign`
+* `PUT /api/tasks/:id/status`
 
-## Future Improvements
+---
 
-- Notifications
-- File attachments
-- Better UI
+## 📊 Usage
+
+1. Register a new user
+2. Create a project → you become **Owner**
+3. Share Project ID → others can join
+4. Add members to your project
+5. Create and assign tasks
+6. Members update task status
+7. Track everything via dashboard
+
+---
+
+## 🚀 Deployment
+
+### Backend (Railway / Render)
+
+* Set environment variables:
+
+  * `MONGO_URI`
+  * `JWT_SECRET`
+  * `PORT`
+* Start command:
+
+  ```bash
+  npm start
+  ```
+
+### Frontend (Vercel / Netlify)
+
+* Deploy `frontend` folder
+* Update API base URL in:
+
+  ```
+  src/services/api.js
+  ```
+
+
+## 🔮 Future Improvements
+
+* 🔔 Notifications system
+* 📎 File attachments
+* 🔍 Search & filters
+* 📱 Responsive UI enhancements
+
+---
+
+## 👨‍💻 Author
+
+**Vaibhav Jain**
+GitHub: https://github.com/VaibhavJain191
+
+
