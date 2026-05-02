@@ -1,25 +1,28 @@
 const express = require("express");
 const dotenv = require("dotenv");
 
-// Load environment variables from the .env file.
+// Load environment variables
 dotenv.config();
 
 const app = express();
 
-// Allow the server to read JSON data sent in request bodies.
+// DB connection
+const connectDatabase = require("./config/db");
+connectDatabase();
+
+// Middleware
 app.use(express.json());
 
-// Simple test route to confirm the API is running.
+// Test route
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Server is running",
   });
 });
 
-// Use the PORT value from .env, or fall back to 5000 for local development.
+// Port
 const APP_PORT = process.env.PORT || 5000;
 
 app.listen(APP_PORT, () => {
   console.log(`Server is running on port ${APP_PORT}`);
-  console.log("Backend server started successfully");
 });
