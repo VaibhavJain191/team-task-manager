@@ -29,6 +29,12 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/api/test", (req, res) => {
+  res.status(200).json({
+    message: "API routing is working correctly",
+  });
+});
+
 // Port
 const APP_PORT = process.env.PORT || 5000;
 
