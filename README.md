@@ -181,7 +181,7 @@ A full-stack MERN application that allows teams to create projects, assign tasks
   ```
 ## Live Demo
 
-Frontend: https://team-task-manager-c827jfo67-vjs-projects-a222e98a.vercel.app/  
+Frontend: https://team-task-manager-three-mu.vercel.app/  
 Backend: https://team-task-manager-production-4216.up.railway.app/
 
 ## 🔮 Future Improvements
