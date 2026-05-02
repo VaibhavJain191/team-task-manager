@@ -11,7 +11,7 @@ function Navbar() {
 
   return (
     <header className="navbar">
-      <Link className="brand" to="/dashboard">Ethara AI</Link>
+      <Link className="brand" to="/dashboard">Team Task Manager</Link>
       <nav>
         {token ? (
           <>

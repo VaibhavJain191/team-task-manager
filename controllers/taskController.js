@@ -2,7 +2,6 @@ const Task = require("../models/Task");
 const Project = require("../models/Project");
 const User = require("../models/User");
 
-// CREATE TASK (Admin)
 const createTask = async (req, res) => {
   try {
     const { title, description, project, assignedTo, dueDate } = req.body;
@@ -21,7 +20,12 @@ const createTask = async (req, res) => {
       });
     }
 
-    // Validate assigned user is project member
+    if (existingProject.createdBy.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        message: "Only the project creator can create tasks",
+      });
+    }
+
     if (
       assignedTo &&
       !existingProject.members.some(
@@ -33,13 +37,21 @@ const createTask = async (req, res) => {
       });
     }
 
-    const task = await Task.create({
+    const taskData = {
       title,
       description,
       project,
-      assignedTo,
       dueDate,
-    });
+    };
+
+    if (assignedTo) {
+      taskData.assignedTo = assignedTo;
+    }
+
+    const task = await Task.create(taskData);
+
+    await task.populate("project", "title");
+    await task.populate("assignedTo", "name email");
 
     res.status(201).json({
       message: "Task created successfully",
@@ -53,7 +65,6 @@ const createTask = async (req, res) => {
   }
 };
 
-// ASSIGN TASK (Admin)
 const assignTask = async (req, res) => {
   try {
     const { taskId } = req.params;
@@ -75,7 +86,12 @@ const assignTask = async (req, res) => {
 
     const project = await Project.findById(task.project);
 
-    // Check if user exists
+    if (project.createdBy.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        message: "Only project creator can assign tasks",
+      });
+    }
+
     const user = await User.findById(userId);
 
     if (!user) {
@@ -84,7 +100,6 @@ const assignTask = async (req, res) => {
       });
     }
 
-    // Check if user is project member
     if (
       !project.members.some(
         (member) => member.toString() === userId
@@ -95,7 +110,6 @@ const assignTask = async (req, res) => {
       });
     }
 
-    // Optional: prevent reassigning same user
     if (
       task.assignedTo &&
       task.assignedTo.toString() === userId
@@ -107,6 +121,9 @@ const assignTask = async (req, res) => {
 
     task.assignedTo = userId;
     await task.save();
+
+    await task.populate("project", "title");
+    await task.populate("assignedTo", "name email");
 
     res.status(200).json({
       message: "Task assigned successfully",
@@ -120,7 +137,6 @@ const assignTask = async (req, res) => {
   }
 };
 
-// UPDATE TASK STATUS (Assigned User)
 const updateTaskStatus = async (req, res) => {
   try {
     const { taskId } = req.params;
@@ -140,18 +156,21 @@ const updateTaskStatus = async (req, res) => {
       });
     }
 
-    // Only assigned user can update
-    if (
-      !task.assignedTo ||
-      task.assignedTo.toString() !== req.user._id.toString()
-    ) {
+    const project = await Project.findById(task.project);
+    const isProjectCreator = project && project.createdBy.toString() === req.user._id.toString();
+    const isAssignedUser = task.assignedTo && task.assignedTo.toString() === req.user._id.toString();
+
+    if (!isProjectCreator && !isAssignedUser) {
       return res.status(403).json({
-        message: "Only the assigned user can update this task",
+        message: "Only the assigned user or project creator can update this task",
       });
     }
 
     task.status = status;
     await task.save();
+
+    await task.populate("project", "title");
+    await task.populate("assignedTo", "name email");
 
     res.status(200).json({
       message: "Task status updated successfully",
@@ -165,11 +184,13 @@ const updateTaskStatus = async (req, res) => {
   }
 };
 
-// GET TASKS (User)
 const getTasks = async (req, res) => {
   try {
+    const userProjects = await Project.find({ members: req.user._id }).select("_id");
+    const projectIds = userProjects.map((p) => p._id);
+
     const filter = {
-      assignedTo: req.user._id,
+      project: { $in: projectIds },
     };
 
     if (req.query.project) {
@@ -177,7 +198,7 @@ const getTasks = async (req, res) => {
     }
 
     const tasks = await Task.find(filter)
-      .populate("project", "title description")
+      .populate("project", "title description createdBy")
       .populate("assignedTo", "name email role");
 
     res.status(200).json({
@@ -191,7 +212,6 @@ const getTasks = async (req, res) => {
   }
 };
 
-// DASHBOARD API
 const getDashboardData = async (req, res) => {
   try {
     const today = new Date();

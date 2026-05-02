@@ -13,8 +13,8 @@ const router = express.Router();
 
 router.get("/dashboard", protect, getDashboardData);
 
-router.post("/", protect, adminOnly, createTask);
-router.put("/:taskId/assign", protect, adminOnly, assignTask);
+router.post("/", protect, createTask);
+router.put("/:taskId/assign", protect, assignTask);
 router.patch("/:taskId/status", protect, updateTaskStatus);
 router.get("/", protect, getTasks);
 
